@@ -22,6 +22,7 @@ x-airflow-common:
     AIRFLOW__CELERY__WORKER_CONCURRENCY: "8"
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
     AIRFLOW_CONFIG: '/opt/airflow/config/airflow.cfg'
+    AIRFLOW_CONN_MARKET_POSTGRES: postgresql+psycopg2://market:market@market-postgres:5432/market_data
   volumes:
     - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/dags
     - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
@@ -325,6 +326,22 @@ services:
         condition: service_completed_successfully
     restart: "no"
 
+  market-postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: market
+      POSTGRES_PASSWORD: market
+      POSTGRES_DB: market_data
+    volumes:
+      - market-postgres-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "market"]
+      interval: 10s
+      retries: 5
+      start_period: 5s
+    restart: always
+
 volumes:
   postgres-db-volume:
   mlflow-artifacts:
+  market-postgres-db:
