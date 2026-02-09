@@ -1,5 +1,12 @@
 # ETL_Data_KPI
 
+## Generar las carpetas necesarias
+mkdir -p ./dags
+mkdir -p ./logs
+mkdir -p ./plugins
+mkdir -p ./data
+mkdir -p ./config  
+
 ## Primera vez - inicializa todo
 docker-compose up airflow-init
 
