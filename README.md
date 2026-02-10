@@ -1,5 +1,12 @@
 # ETL_Data_KPI
 
+## Instalar y Ejecutar:
+sudo apt install -y docker-compose-v2
+newgrp docker
+sudo usermod -aG docker $USER
+
+## Generar en el directorio raiz del proyecto el archivo .env
+
 ## Generar las carpetas necesarias
 mkdir -p ./dags
 mkdir -p ./logs

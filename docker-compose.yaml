@@ -292,7 +292,7 @@ services:
       - "5050:80"
     depends_on:
       - postgres
-    network:
+    networks:
       - default
     restart: always
 
