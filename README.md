@@ -22,3 +22,13 @@ docker-compose up -d
 
 ## Verificar que todo esta corriendo
 docker-compose ps
+
+## Webpage Airflow API-Server
+- ipadd:8080
+
+## Market DB
+- Host name/address: market-postgre
+- Port: 5432
+- Maintenance database: market_data
+- Username: ...
+- Password: ...
